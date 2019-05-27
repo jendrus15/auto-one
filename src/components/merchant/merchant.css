@@ -1,0 +1,10 @@
+.merchant__list {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.merchant__details {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    place-content: center;
+}

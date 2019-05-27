@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import logo from './logo.png';
 import './App.css';
 
+import merchData from './data';
+// import Merchant from './components/merchant/Merchant';
+import MerchantList from './components/merchant/MerchList';
+// import { connect } from 'tls';
+
 class App extends Component {
   render() {
     return (
@@ -10,9 +15,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <MerchantList data={merchData} />
       </div>
     );
   }
