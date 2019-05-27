@@ -3,54 +3,72 @@ import MerchantForm from './MerchantForm';
 import { connect } from 'react-redux';
 import { removeMerchant } from '../../actions';
 
-function MerchantShow(props) {
-    const { id, firstname, lastname, avatarUrl, email, phone } = props.merchant;
-    
-    return (
-        <div className="merchant__details">
-            <img alt="Avatar" src={avatarUrl} />
-            <div>{ firstname }</div>
-            <div>{ lastname }</div>
-            <div>{ email }</div>
-            <div>{ phone }</div>
-
-            <button onClick={() => {props.toggleEdit()}}>Edit</button>
-            <button onClick={() => props.removeMerchant(id)}>Remove</button>
-        </div>
-    )
-}
-
 class Merchant extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            merchant: props.data,
-            edit: false
+            edit: false,
+            bids: false,
         };
     }
 
     toggleEdit = () => {
         this.setState({
-            edit: !this.state.edit
+            edit: !this.state.edit,
         });
     }
 
+    toggleBids = () => {
+        this.setState({
+            bids: !this.state.bids,
+        });
+    }
+
+    removeMerchant = () => {
+        this.props.removeMerchant(this.props.id);
+    }
+
     render() {
-        return (this.state.edit) ? 
-            <MerchantForm merchant={this.state.merchant}
-                          toggleEdit={this.toggleEdit}  />:
-            <MerchantShow merchant={this.state.merchant} 
-                          toggleEdit={this.toggleEdit} 
-                          removeMerchant={this.props.removeMerchant}/>;
+        const isPremium = (this.props.hasPremium) ? 'merchant__premium' : '';
+        return (
+            <div className={`merchant__item`}>
+                <div className={`merchant__details ${isPremium}`}>
+                    <img alt="Avatar" src={ this.props.avatarUrl } />
+                    <div>{ this.props.firstname }</div>
+                    <div>{ this.props.lastname }</div>
+                    <div>{ this.props.email }</div>
+                    <div>{ this.props.phone }</div>
+
+                    <button onClick={this.toggleBids}>Bids</button>
+                    <button onClick={this.toggleEdit}>Edit</button>
+                    <button onClick={this.removeMerchant}>X</button>
+                </div>
+
+                {(this.state.bids) ? 
+                    <div className={`merchant__details--bids`}>
+                        {this.props.bids.map(bid => { 
+                            return <div key={bid.id} className={`merchant__details--bid-item`}>
+                                <div>{bid.carTitle}</div>
+                                <div>{bid.amount}</div>
+                                <div>{bid.created}</div>
+                            </div>
+                        })}
+                    </div>:
+                    null
+                }
+
+
+                {(this.state.edit) ? 
+                    <MerchantForm 
+                        merchant={this.props}
+                        onSubmit={this.toggleEdit}
+                        onOverlayClick={this.toggleEdit}
+                    />: null}
+            </div>
+        )
     }
 }
-
-// export default Merchant;
-
-// const mapStateToProps = state => ({
-//     merchants: state.merchants
-// });
 
 const mapDispatchToProps = dispatch => ({
     removeMerchant: id => dispatch(removeMerchant(id))

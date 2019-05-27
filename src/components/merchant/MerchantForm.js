@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid';
 
 import { connect } from 'react-redux';
 import { editMerchant, addMerchant } from '../../actions';
@@ -25,13 +26,17 @@ class MerchantForm extends React.Component {
         event.preventDefault();
         
         if(this.state.id) {
-            this.props.toggleEdit();
             this.props.editMerchant(this.state.id, this.state);
+            if(this.props.onSubmit) this.props.onSubmit();
             return;
         }
 
-        this.props.addMerchant('5', this.state);
+        const id = uuid.v4();
+
+        this.props.addMerchant(id, {...this.state, ...{id}});
         this.setState({...this.skeleton});
+
+        if(this.props.onSubmit) this.props.onSubmit();
     }
 
     onChange = event => {
@@ -40,21 +45,46 @@ class MerchantForm extends React.Component {
         )
     }
 
+    onOverlayClick = () => {
+        if(this.props.onOverlayClick) this.props.onOverlayClick();
+    }
+
     render() {
         const { firstname, lastname, avatarUrl, email, phone, hasPremium } = this.state;
+
         return (
-            <form onSubmit={this.onSubmit}>
-                <input name="firstname" type="text" value={firstname} onChange={this.onChange} />
-                <input name="lastname" type="text" value={lastname} onChange={this.onChange} />
-                <input name="avatarUrl" type="url" value={avatarUrl} onChange={this.onChange} />
-                <input name="email" type="email" value={email} onChange={this.onChange} />
-                <input name="phone" type="tel" value={phone} onChange={this.onChange} />
-                <input name="hasPremium" type="checkbox" value={hasPremium} onChange={this.onChange} />
-                {/* <input name="" type="" value={} onChange={this.onChange} /> */}
+            <div className={`merchant__form`}>
+                <div onClick={this.onOverlayClick} className={`merchant__form--overlay`}></div>
+                <form onSubmit={this.onSubmit}>
+                    <div className={`merchant__form--field`}>
+                        <div>Firstname</div>
+                        <input name="firstname" type="text" value={firstname} onChange={this.onChange} />
+                    </div>
+                    <div className={`merchant__form--field`}>
+                        <div>Lastname</div>
+                        <input name="lastname" type="text" value={lastname} onChange={this.onChange} />
+                    </div>
+                    <div className={`merchant__form--field`}>
+                        <div>Avatar URL</div>
+                        <input name="avatarUrl" type="url" value={avatarUrl} onChange={this.onChange} />
+                    </div>
+                    <div className={`merchant__form--field`}>
+                        <div>E-mail</div>
+                        <input name="email" type="email" value={email} onChange={this.onChange} />
+                    </div>
+                    <div className={`merchant__form--field`}>
+                        <div>Phone</div>
+                        <input name="phone" type="tel" value={phone} onChange={this.onChange} />
+                    </div>
+                    <div className={`merchant__form--field`}>
+                        <div>Premium</div>
+                        <input name="hasPremium" type="checkbox" value={hasPremium} onChange={this.onChange} />
+                    </div>
 
 
-                <button>Save</button>
-            </form>
+                    <button>Save</button>
+                </form>
+            </div>
         )
     }
 }

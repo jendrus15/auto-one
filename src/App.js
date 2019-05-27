@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.png';
+import './normalize.css';
 import './App.css';
 
 import merchData from './data';
-// import Merchant from './components/merchant/Merchant';
-import MerchantList from './components/merchant/MerchList';
+import MerchantList from './components/merchant/MerchantList';
 // import { connect } from 'tls';
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome</h2>
         </div>
-        <MerchantList data={merchData} />
+        <MerchantList data={merchData} max={8} />
       </div>
     );
   }
