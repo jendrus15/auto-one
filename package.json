@@ -90,6 +90,9 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "express": "^4.17.1",
+    "immutability-helper": "^3.0.0",
+    "nodemon": "^1.19.1",
     "uuid": "^3.3.2"
   }
 }

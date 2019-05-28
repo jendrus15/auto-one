@@ -8,14 +8,14 @@ class MerchantPagination extends React.Component {
 
     onNext = () => {
         this.setState({
-            active: this.state.active++
+            active: ++this.state.active
         });
         if(this.props.onNext) this.props.onNext();
     }
 
     onPrev = () => {
         this.setState({
-            active: this.state.active--
+            active: --this.state.active
         });
         if(this.props.onPrev) this.props.onPrev();
     }
@@ -29,14 +29,14 @@ class MerchantPagination extends React.Component {
 
     render() {
         return (
-            <div>
-                <div onClick={this.onPrev}>Prev</div>
+            <div className={`merchant__pagination`}>
+                {(this.state.active !== 1) ? <button onClick={this.onPrev}>Prev</button> : null}
                 {
                     Array.from(Array(this.props.pages), (e,i)=>i+1).map(
-                        page => <div key={page} onClick={this.onExact.bind(this, page)}>{page}</div>
+                        page => <button className={`${this.state.active === page ? 'merchant__pagination--active' : ''}`} key={page} onClick={this.onExact.bind(this, page)}>{page}</button>
                     )
-                }
-                <div onClick={this.onNext}>Next</div>
+                }                
+                {(this.state.active < this.state.pages) ? <button onClick={this.onNext}>Next</button> : null}
             </div>
         )
     }

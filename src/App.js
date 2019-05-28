@@ -3,7 +3,6 @@ import logo from './logo.png';
 import './normalize.css';
 import './App.css';
 
-import merchData from './data';
 import MerchantList from './components/merchant/MerchantList';
 // import { connect } from 'tls';
 
@@ -15,7 +14,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome</h2>
         </div>
-        <MerchantList data={merchData} max={8} />
+        <MerchantList max={3} />
       </div>
     );
   }

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import merchData from './data';
-
-function merchants(state = [...merchData], action) {
+function merchants(state = [], action) {
   switch(action.type) {
+    case 'SET_INIT':
+      return [...state, ...action.data];
     case 'ADD_MERCHANT':
       return [...state, {...action.data}]
     case 'EDIT_MERCHANT':

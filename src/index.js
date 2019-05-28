@@ -8,6 +8,12 @@ import registerServiceWorker from './registerServiceWorker';
 
 const store = configureStore();
 
+fetch(`http://localhost:8080/merchants`)
+  .then(res => res.json())
+  .then(res => {
+    store.dispatch( {type: 'SET_INIT', data: res} );
+  });
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
