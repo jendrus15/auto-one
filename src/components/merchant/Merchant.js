@@ -25,16 +25,22 @@ class Merchant extends Component {
         });
     }
 
+    sortBidsAsc = (a, b) => new Date(a.created).getTime() - new Date(b.created).getTime();
+    sortBidsDesc = (a, b) => new Date(b.created).getTime() - new Date(a.created).getTime();
+
     removeMerchant = () => {
         this.props.removeMerchant(this.props.id);
     }
 
     render() {
         const isPremium = (this.props.hasPremium) ? 'merchant__premium' : '';
+        const bids = this.props.bids.sort(this.sortBidsDesc);
         return (
             <div className={`merchant__item`}>
                 <div className={`merchant__details ${isPremium}`}>
-                    <img alt="Avatar" src={ this.props.avatarUrl } />
+                    <div className={`merchant__details--image`}>
+                        <img alt="Avatar" src={ this.props.avatarUrl } />
+                    </div>
                     <div>{ this.props.firstname }</div>
                     <div>{ this.props.lastname }</div>
                     <div>{ this.props.email }</div>
@@ -47,7 +53,7 @@ class Merchant extends Component {
 
                 {(this.state.bids) ? 
                     <div className={`merchant__details--bids`}>
-                        {this.props.bids.map(bid => { 
+                        {bids.map(bid => { 
                             return <div key={bid.id} className={`merchant__details--bid-item`}>
                                 <div>{bid.carTitle}</div>
                                 <div>{bid.amount}</div>

@@ -12,8 +12,13 @@ class MerchantBidForm extends React.Component {
             created: '',
         }
 
-        this.state = {...this.skeleton, ...props.bid, ...{ edit: false }};
+        this.state = {...this.skeleton, ...props.bid, ...{ edit: props.bid.added || false }};
     }
+
+    componentDidMount(){
+        if(this.state.added) this.titleInput.focus();
+        this.setState({ added: false }); 
+     }
 
     toggleEdit = () => {
         this.setState({ edit: !this.state.edit });
@@ -27,17 +32,11 @@ class MerchantBidForm extends React.Component {
     }
 
     onChange = event => {
-        this.setState(
-            {[event.target.name]: event.target.value},
-            () => {
-                // if(!this.state.id) this.setState({id: uuid.v4()});
-                // this.props.onChange(this.state, this.props.index);
-            }
-        )
+        this.setState( { [event.target.name]: event.target.value } );
     }
 
     onRemove = () => {
-        this.props.onRemove(this.props.index)
+        this.props.onRemove(this.props.index);
     }
 
     render() {
@@ -45,7 +44,7 @@ class MerchantBidForm extends React.Component {
 
         return (
             <div className={`merchant__form--main--bid ${(this.state.edit) ? 'bid-edit' : ''}`}>
-                <input disabled={ !this.state.edit } name="carTitle" type="text" value={carTitle} onChange={this.onChange} />
+                <input disabled={ !this.state.edit } name="carTitle" type="text" value={carTitle} onChange={this.onChange} ref={ input => { this.titleInput = input } } />
                 <input disabled={ !this.state.edit } name="amount" type="number" value={amount} onChange={this.onChange} />
                 <input disabled={ !this.state.edit } name="created" type="date" value={created} onChange={this.onChange} />
 
@@ -54,7 +53,7 @@ class MerchantBidForm extends React.Component {
                     <button onClick={this.onSubmit}>Save</button>
                 }
 
-                <button onClick={this.onRemove}>Remove</button>
+                <button onClick={this.onRemove}>X</button>
             </div>
         )
     }

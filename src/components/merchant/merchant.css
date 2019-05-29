@@ -38,6 +38,12 @@ button:hover {
     align-items: center;
 }
 
+.merchant__details--image,
+.merchant__details--image img {
+    width: 54px;
+    height: 54px;
+}
+
 .merchant__details img {
     border-radius: 50%;
     border: 2px solid #1B4691;
@@ -58,10 +64,15 @@ button:hover {
 }
 
 .merchant__details--bid-item {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: start;
 
     margin-top: 10px;
+}
+
+.merchant__details--bid-item div {
+    justify-self: start;
 }
 
 .merchant__button--add {
@@ -107,6 +118,9 @@ button:hover {
     background: #fff;
 
     min-width: 50vw;
+    max-height: 90vh;
+
+    overflow: auto;
 
     padding: 20px 20px 10px 20px;
 }
@@ -140,14 +154,19 @@ button:hover {
 /* ------------------------------------ */
 
 .merchant__form--main--bids {
-    display: grid;
+    display: inline-grid;
     grid-gap: 10px;
+
+    margin: 15px auto 0;
+    border: 1px solid #1B4691;
+    padding: 15px;
 }
 
 .merchant__form--main--bid {
-    display: grid;
-    grid-template-columns: repeat(4, max-content);
+    display: inline-grid;
+    grid-template-columns: repeat(5, max-content);
     grid-gap: 10px;
+
 }
 
 .merchant__form--main--bid input {

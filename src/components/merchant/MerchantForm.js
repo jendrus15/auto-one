@@ -46,7 +46,7 @@ class MerchantForm extends React.Component {
     }
 
     addBid = () => {
-        this.setState({bids: [...this.state.bids, {id: uuid.v4()} ]});
+        this.setState({bids: [...this.state.bids, {id: uuid.v4(), added: true} ]});
     }
 
     removeBid = index => {
@@ -95,11 +95,10 @@ class MerchantForm extends React.Component {
                         </div>
                         <div className={`merchant__form--field`}>
                             <div>Premium</div>
-                            <input name="hasPremium" type="checkbox" value={hasPremium} onChange={this.onChange} />
+                            <input name="hasPremium" type="checkbox" checked={hasPremium} onChange={this.onChange} />
                         </div>
                     </form>
 
-                    <div>BIDS</div>
                     <div className={`merchant__form--main--bids`}>{
                         this.state.bids.map(
                             (bid, index) => 

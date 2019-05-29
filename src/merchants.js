@@ -10,9 +10,9 @@ const merch = [
         phone: '666555111',
         hasPremium: false,
         bids: [
-            { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' },
-            { id: '2', carTitle: 'Opel', amount: 1, created: '2019-05-27' },
-            { id: '3', carTitle: 'Opel', amount: 1, created: '2019-05-27' },
+            { id: uuid.v4(), carTitle: 'Opel', amount: 1, created: '2019-05-27' },
+            { id: uuid.v4(), carTitle: 'Nissan', amount: 2, created: '2018-01-05' },
+            { id: uuid.v4(), carTitle: 'Ford', amount: 10, created: '2019-05-27' },
         ]
     },
     { 
@@ -24,7 +24,7 @@ const merch = [
         phone: '666777888',
         hasPremium: true,
         bids: [
-            { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
+            { id: uuid.v4(), carTitle: 'Corsa', amount: 5, created: '2018-07-25' }
         ]
     },
     { 
@@ -36,7 +36,7 @@ const merch = [
         phone: '666',
         hasPremium: true,
         bids: [
-            { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
+            { id: uuid.v4(), carTitle: 'Mustang', amount: 98, created: '2015-04-01' }
         ]
     },
     { 
@@ -48,177 +48,9 @@ const merch = [
         phone: '777',
         hasPremium: false,
         bids: [
-            { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
+            { id: uuid.v4(), carTitle: 'Fiesta', amount: 0, created: '2019-03-17' }
         ]
     },
-    // { 
-    //     id: uuid.v4(),
-    //     firstname: 'Andrzej4',
-    //     lastname: 'Sikorski',
-    //     avatarUrl: 'https://pl.gravatar.com/userimage/35724175/4b345c0221c9a3181edbc9d4b6058761?size=50',
-    //     email: 'asikorski@dev.pl',
-    //     phone: '666555111',
-    //     hasPremium: true,
-    //     bids: [
-    //         { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
-    //     ]
-    // },
-    // { 
-    //     id: uuid.v4(),
-    //     firstname: 'Andrzej4',
-    //     lastname: 'Sikorski',
-    //     avatarUrl: 'https://pl.gravatar.com/userimage/35724175/4b345c0221c9a3181edbc9d4b6058761?size=50',
-    //     email: 'asikorski@dev.pl',
-    //     phone: '666555111',
-    //     hasPremium: true,
-    //     bids: [
-    //         { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
-    //     ]
-    // },
-    // { 
-    //     id: uuid.v4(),
-    //     firstname: 'Andrzej4',
-    //     lastname: 'Sikorski',
-    //     avatarUrl: 'https://pl.gravatar.com/userimage/35724175/4b345c0221c9a3181edbc9d4b6058761?size=50',
-    //     email: 'asikorski@dev.pl',
-    //     phone: '666555111',
-    //     hasPremium: true,
-    //     bids: [
-    //         { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
-    //     ]
-    // },
-    // { 
-    //     id: uuid.v4(),
-    //     firstname: 'Andrzej4',
-    //     lastname: 'Sikorski',
-    //     avatarUrl: 'https://pl.gravatar.com/userimage/35724175/4b345c0221c9a3181edbc9d4b6058761?size=50',
-    //     email: 'asikorski@dev.pl',
-    //     phone: '666555111',
-    //     hasPremium: true,
-    //     bids: [
-    //         { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
-    //     ]
-    // },
-    // { 
-    //     id: uuid.v4(),
-    //     firstname: 'Andrzej4',
-    //     lastname: 'Sikorski',
-    //     avatarUrl: 'https://pl.gravatar.com/userimage/35724175/4b345c0221c9a3181edbc9d4b6058761?size=50',
-    //     email: 'asikorski@dev.pl',
-    //     phone: '666555111',
-    //     hasPremium: true,
-    //     bids: [
-    //         { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
-    //     ]
-    // },
-    // { 
-    //     id: uuid.v4(),
-    //     firstname: 'Andrzej4',
-    //     lastname: 'Sikorski',
-    //     avatarUrl: 'https://pl.gravatar.com/userimage/35724175/4b345c0221c9a3181edbc9d4b6058761?size=50',
-    //     email: 'asikorski@dev.pl',
-    //     phone: '666555111',
-    //     hasPremium: true,
-    //     bids: [
-    //         { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
-    //     ]
-    // },
-    // { 
-    //     id: uuid.v4(),
-    //     firstname: 'Andrzej4',
-    //     lastname: 'Sikorski',
-    //     avatarUrl: 'https://pl.gravatar.com/userimage/35724175/4b345c0221c9a3181edbc9d4b6058761?size=50',
-    //     email: 'asikorski@dev.pl',
-    //     phone: '666555111',
-    //     hasPremium: true,
-    //     bids: [
-    //         { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
-    //     ]
-    // },
-    // { 
-    //     id: uuid.v4(),
-    //     firstname: 'Andrzej4',
-    //     lastname: 'Sikorski',
-    //     avatarUrl: 'https://pl.gravatar.com/userimage/35724175/4b345c0221c9a3181edbc9d4b6058761?size=50',
-    //     email: 'asikorski@dev.pl',
-    //     phone: '666555111',
-    //     hasPremium: true,
-    //     bids: [
-    //         { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
-    //     ]
-    // },
-    // { 
-    //     id: uuid.v4(),
-    //     firstname: 'Andrzej4',
-    //     lastname: 'Sikorski',
-    //     avatarUrl: 'https://pl.gravatar.com/userimage/35724175/4b345c0221c9a3181edbc9d4b6058761?size=50',
-    //     email: 'asikorski@dev.pl',
-    //     phone: '666555111',
-    //     hasPremium: true,
-    //     bids: [
-    //         { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
-    //     ]
-    // },
-    // { 
-    //     id: uuid.v4(),
-    //     firstname: 'Andrzej4',
-    //     lastname: 'Sikorski',
-    //     avatarUrl: 'https://pl.gravatar.com/userimage/35724175/4b345c0221c9a3181edbc9d4b6058761?size=50',
-    //     email: 'asikorski@dev.pl',
-    //     phone: '666555111',
-    //     hasPremium: true,
-    //     bids: [
-    //         { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
-    //     ]
-    // },
-    // { 
-    //     id: uuid.v4(),
-    //     firstname: 'Andrzej4',
-    //     lastname: 'Sikorski',
-    //     avatarUrl: 'https://pl.gravatar.com/userimage/35724175/4b345c0221c9a3181edbc9d4b6058761?size=50',
-    //     email: 'asikorski@dev.pl',
-    //     phone: '666555111',
-    //     hasPremium: true,
-    //     bids: [
-    //         { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
-    //     ]
-    // },
-    // { 
-    //     id: uuid.v4(),
-    //     firstname: 'Andrzej4',
-    //     lastname: 'Sikorski',
-    //     avatarUrl: 'https://pl.gravatar.com/userimage/35724175/4b345c0221c9a3181edbc9d4b6058761?size=50',
-    //     email: 'asikorski@dev.pl',
-    //     phone: '666555111',
-    //     hasPremium: true,
-    //     bids: [
-    //         { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
-    //     ]
-    // },
-    // { 
-    //     id: uuid.v4(),
-    //     firstname: 'Andrzej4',
-    //     lastname: 'Sikorski',
-    //     avatarUrl: 'https://pl.gravatar.com/userimage/35724175/4b345c0221c9a3181edbc9d4b6058761?size=50',
-    //     email: 'asikorski@dev.pl',
-    //     phone: '666555111',
-    //     hasPremium: true,
-    //     bids: [
-    //         { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
-    //     ]
-    // },
-    // { 
-    //     id: uuid.v4(),
-    //     firstname: 'Andrzej4',
-    //     lastname: 'Sikorski',
-    //     avatarUrl: 'https://pl.gravatar.com/userimage/35724175/4b345c0221c9a3181edbc9d4b6058761?size=50',
-    //     email: 'asikorski@dev.pl',
-    //     phone: '666555111',
-    //     hasPremium: true,
-    //     bids: [
-    //         { id: '1', carTitle: 'Opel', amount: 1, created: '2019-05-27' }
-    //     ]
-    // },
 ];
 
 exports.getAll = function(request, response) {
