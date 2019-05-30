@@ -51,8 +51,8 @@ class MerchantList extends React.Component {
                 { 
                     (this.props.merchants.length > this.props.max) ? 
                         <MerchantPagination 
-                            onNext={() => this.setState( { page: this.state.page+1 } )}
-                            onPrev={() => this.setState( { page: this.state.page-1 } )}
+                            onNext={() => this.setState( { page: ++this.state.page } )}
+                            onPrev={() => this.setState( { page: --this.state.page } )}
                             onExact={page => this.setState( { page } )}
 
                             pages={ Math.ceil(this.props.merchants.length / this.props.max) }

@@ -4,7 +4,6 @@ import './normalize.css';
 import './App.css';
 
 import MerchantList from './components/merchant/MerchantList';
-// import { connect } from 'tls';
 
 class App extends Component {
   render() {
@@ -14,7 +13,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome</h2>
         </div>
-        <MerchantList max={3} />
+        <MerchantList max={7} />
       </div>
     );
   }

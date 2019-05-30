@@ -18,26 +18,35 @@ class MerchantBidForm extends React.Component {
     componentDidMount(){
         if(this.state.added) this.titleInput.focus();
         this.setState({ added: false }); 
-     }
-
-    toggleEdit = () => {
-        this.setState({ edit: !this.state.edit });
     }
+
+    toggleEdit = () => this.setState({ edit: !this.state.edit });
 
     onSubmit = event => {
         if(!this.state.id) this.setState({id: uuid.v4()});
-        this.props.onChange(this.state, this.props.index);
+
+        let emptyField = false;
+        
+        for(const bidElem in this.skeleton) {
+            if(emptyField === true) continue;
+            
+            // eslint-disable-next-line
+            if(this.state[bidElem] == false) emptyField = true;
+        }
+
+        if(emptyField) {
+            alert('Please fill all fields');
+            return false;
+        }
+
+        this.props.onSubmit(this.state, this.props.index);
 
         this.toggleEdit();
     }
 
-    onChange = event => {
-        this.setState( { [event.target.name]: event.target.value } );
-    }
+    onChange = event => this.setState({ [event.target.name]: event.target.value })
 
-    onRemove = () => {
-        this.props.onRemove(this.props.index);
-    }
+    onRemove = () => this.props.onRemove(this.props.index);
 
     render() {
         const { carTitle, amount, created } = this.state;

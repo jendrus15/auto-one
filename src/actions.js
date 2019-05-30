@@ -18,4 +18,4 @@ export const removeMerchant = id => ({
 export const setInitMerchants = data => ({
     type: 'SET_INIT',
     data
-})
+});

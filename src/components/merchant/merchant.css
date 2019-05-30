@@ -119,6 +119,7 @@ button:hover {
 
     min-width: 50vw;
     max-height: 90vh;
+    max-width: 90vw;
 
     overflow: auto;
 
@@ -150,8 +151,6 @@ button:hover {
     width: 100%;
     font-size: 1.5rem;
 }
-
-/* ------------------------------------ */
 
 .merchant__form--main--bids {
     display: inline-grid;

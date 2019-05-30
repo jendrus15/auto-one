@@ -17,44 +17,49 @@ class MerchantForm extends React.Component {
             email: '',
             phone: '',
             hasPremium: false,
-            bids: [{}]
+            bids: []
         }
 
         this.state = {...this.skeleton, ...props.merchant};
     }
 
     submitForm = () => {
+
+        const notRequired = ['id', 'hasPremium', 'bids'];
+        let emptyField = false;
+        
+        for(const merchantElem in this.skeleton) {
+            if(emptyField === true || notRequired.includes(merchantElem)) continue;
+            
+            // eslint-disable-next-line
+            if(this.state[merchantElem] == false) emptyField = true;
+        }
+
+        if(emptyField) {
+            alert('Please fill all fields');
+            return false;
+        }
         
         if(this.state.id) {
             this.props.editMerchant(this.state.id, this.state);
-            if(this.props.onSubmit) this.props.onSubmit();
-            return;
+        } else {
+            const id = uuid.v4();
+            this.props.addMerchant(id, {...this.state, ...{id}});
         }
-
-        const id = uuid.v4();
-
-        this.props.addMerchant(id, {...this.state, ...{id}});
-        this.setState({...this.skeleton});
 
         if(this.props.onSubmit) this.props.onSubmit();
     }
 
-    onChange = event => {
-        this.setState(
-            {[event.target.name]: event.target.value}
-        )
-    }
+    onChange = event => this.setState({ [event.target.name]: event.target.value });
 
-    addBid = () => {
-        this.setState({bids: [...this.state.bids, {id: uuid.v4(), added: true} ]});
-    }
+    addBid = () => this.setState({ bids: [...this.state.bids, {id: uuid.v4(), added: true} ] });
 
     removeBid = index => {
         let dataCopy = [...this.state.bids].filter((bid, bid_index) => bid_index !== index);
         this.setState({ bids: [...dataCopy] });
     }
 
-    onBidChange = (data, index) => {
+    onBidSubmit = (data, index) => {
         let dataCopy = [...this.state.bids];
         dataCopy[index] = data;
 
@@ -99,21 +104,22 @@ class MerchantForm extends React.Component {
                         </div>
                     </form>
 
-                    <div className={`merchant__form--main--bids`}>{
-                        this.state.bids.map(
-                            (bid, index) => 
-                                <MerchantBidForm
-                                    key={bid.id || index}
-                                    bid={bid}
-                                    index={index}
-                                    onChange={this.onBidChange}
-                                    onSubmit={this.onBidSumit}
-                                    onRemove={this.removeBid}
-                                />
-                        )
-                    }</div>
+                    {(this.state.bids.length) ?
+                        <div className={`merchant__form--main--bids`}>{
+                            this.state.bids.map(
+                                (bid, index) => 
+                                    <MerchantBidForm
+                                        key={bid.id || index}
+                                        bid={bid}
+                                        index={index}
+                                        onSubmit={this.onBidSubmit}
+                                        onRemove={this.removeBid}
+                                    />
+                            )
+                        }</div> : null
+                    }
 
-                    <div className={`merchant__form--main--button-add-bid`}><button onClick={() => this.addBid()}>Add bid</button></div>
+                    <div className={`merchant__form--main--button-add-bid`}><button onClick={this.addBid}>Add bid</button></div>
                     <div className={`merchant__form--main--button-save`}><button onClick={this.submitForm}>Save</button></div>
                 </div>
             </div>

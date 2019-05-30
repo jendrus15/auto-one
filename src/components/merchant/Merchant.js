@@ -13,28 +13,19 @@ class Merchant extends Component {
         };
     }
 
-    toggleEdit = () => {
-        this.setState({
-            edit: !this.state.edit,
-        });
-    }
+    toggleEdit = () => this.setState({ edit: !this.state.edit });
 
-    toggleBids = () => {
-        this.setState({
-            bids: !this.state.bids,
-        });
-    }
+    toggleBids = () => this.setState({ bids: !this.state.bids });
 
-    sortBidsAsc = (a, b) => new Date(a.created).getTime() - new Date(b.created).getTime();
+    sortBidsAsc  = (a, b) => new Date(a.created).getTime() - new Date(b.created).getTime();
     sortBidsDesc = (a, b) => new Date(b.created).getTime() - new Date(a.created).getTime();
 
-    removeMerchant = () => {
-        this.props.removeMerchant(this.props.id);
-    }
+    removeMerchant = () => this.props.removeMerchant(this.props.id);
 
     render() {
         const isPremium = (this.props.hasPremium) ? 'merchant__premium' : '';
         const bids = this.props.bids.sort(this.sortBidsDesc);
+
         return (
             <div className={`merchant__item`}>
                 <div className={`merchant__details ${isPremium}`}>
